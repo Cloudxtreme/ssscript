@@ -57,7 +57,7 @@ chmod +x install.sh
 ./serverSpeeder.sh
 # chattr +i /serverspeeder/etc/apx-20341231.lic
 cd ~
-# rm -rf server*
+rm -rf serverSpeeder*
 echo -e "\033[44;37;5m ####  serverSpeeder have been installed  #### \033[0m "
 service serverSpeeder start
 sleep 3
