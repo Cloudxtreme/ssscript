@@ -1,5 +1,9 @@
 #!/bin/sh
 cd ~
+
+#install git
+yum -y install git
+
 # install setuptools module
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
 python ez_setup.py
@@ -19,6 +23,7 @@ pip install cymysql
 yum install -y m2crypto
 echo -e "\033[44;37;5m ####  python correlation have been installed  #### \033[0m "
 
+# git clone manyuser
 git clone -b manyuser https://github.com/VoganWong/shadowsocks.git
 echo -e "\033[44;37;5m ####  manyusr have been downloaded  #### \033[0m "
 
