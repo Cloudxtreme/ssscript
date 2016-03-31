@@ -15,9 +15,9 @@ cd pip-1.5.5/
 python setup.py install
 cd ~
 rm -rf 1.5.5.tar.gz
-rm -rf setuptools-20.3.1.zip
 rm -rf pip-1.5.5
 rm -rf ez_setup.py
+rm -rf setuptools-20.6.6.zip
 
 pip install cymysql
 yum install -y m2crypto
