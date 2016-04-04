@@ -70,6 +70,10 @@ else
     service serverSpeeder status
 fi
 
+echo -e "\033[44;37;5m ####  stop vps's iptables  #### \033[0m "
+# stop iptables
+service iptablse stop
+
 echo -e "\033[44;37;5m ####  test your vps's speed  #### \033[0m "
 # install speedtest-cli.py
 wget -O speedtest-cli https://raw.github.com/sivel/speedtest-cli/master/speedtest_cli.py
