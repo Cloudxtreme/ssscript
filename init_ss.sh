@@ -38,6 +38,9 @@ then
     exit
 else
     echo -e "\033[44;37;5m ####  your vps is available to install serverSpeeder  #### \033[0m "
+    # install expect
+    yum -y install expect
+
     # install serverSpeeder
     cd ~
     MAC=$(cat /sys/class/net/eth0/address)
