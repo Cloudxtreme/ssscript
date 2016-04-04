@@ -72,7 +72,7 @@ fi
 
 echo -e "\033[44;37;5m ####  stop vps's iptables  #### \033[0m "
 # stop iptables
-service iptablse stop
+service iptables stop
 
 echo -e "\033[44;37;5m ####  test your vps's speed  #### \033[0m "
 # install speedtest-cli.py
