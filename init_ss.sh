@@ -116,6 +116,15 @@ if [ "$confirm"x = "y"x ]; then
         echo "Plz modify the file on your own! I don't want to help you anymore.:) "
         exit 0
     fi
+
+    echo -n "Do you want to start manyuser? (y/n): "
+    read confirm
+    if [ "$confirm"x = "y"x ]; then
+        nohup python shadowsocks/shadowsocks/server.py &
+    else
+        echo "Plz run the server on your own! I don't want to help you anymore.:) "
+        exit 0
+    fi
 else
     exit 0
 fi
