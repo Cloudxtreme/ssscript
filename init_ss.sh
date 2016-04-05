@@ -14,11 +14,7 @@ tar zvxf 1.5.5.tar.gz
 cd pip-1.5.5/
 python setup.py install
 cd ~
-rm -rf 1.5.5.tar.gz
-rm -rf pip-1.5.5
-rm -rf ez_setup.py
-rm -rf setuptools*.zip
-
+rm -rf 1.5.5.tar.gz pip-1.5.5 ez_setup.py setuptools*.zip
 pip install cymysql
 yum install -y m2crypto
 echo -e "\033[44;37;5m ####  python correlation have been installed  #### \033[0m "
@@ -79,3 +75,47 @@ echo -e "\033[44;37;5m ####  test your vps's speed  #### \033[0m "
 wget -O speedtest-cli https://raw.github.com/sivel/speedtest-cli/master/speedtest_cli.py
 chmod +x speedtest-cli
 ./speedtest-cli
+
+echo -e -n "\033[44;37;5m ####  Do you want to modify the manyuser config?(y/n) #### \033[0m"
+read confirm
+if [ "$confirm"x = "y"x ]; then
+    file="shadowsocks/shadowsocks/Config.py"
+    if [ ! -r $file ]; then
+        echo -e "\033[41;37m ####  can not find the Config.py!!!  #### \033[0m "
+        exit 0
+    fi
+
+    echo -e "\r\033[44;37;5m ####  write the config of manyusr #### \033[0m \r\r"
+    echo -e -n "input  ""\033[42;37m MYSQL_HOST \033[0m"" :"
+    read MYSQL_HOST
+    echo -e -n "input  ""\033[42;37m MYSQL_PORT \033[0m"" :"
+    read MYSQL_PORT
+    echo -e -n "input  ""\033[42;37m MYSQL_USER \033[0m"" :"
+    read MYSQL_USER
+    echo -e -n "input  ""\033[42;37m MYSQL_PASS \033[0m"" :"
+    read MYSQL_PASS
+    echo -e -n "input  ""\033[42;37m MYSQL_DB \033[0m"" :"
+    read MYSQL_DB
+    echo -e "Your config is : \r"
+    echo -e "\033[47;30m $MYSQL_HOST \033[0m"
+    echo -e "\033[47;30m $MYSQL_PORT \033[0m"
+    echo -e "\033[47;30m $MYSQL_USER \033[0m"
+    echo -e "\033[47;30m $MYSQL_PASS \033[0m"
+    echo -e "\033[47;30m $MYSQL_DB \033[0m"
+
+    echo -n "Are you sure(y/n): "
+    read confirm
+    if [ "$confirm"x = "y"x ]; then
+        sed -i "s/mdss.mengsky.net/$MYSQL_HOST/g" $file
+        sed -i "s/3306/$MYSQL_PORT/g" $file
+        sed -i "s/ss/$MYSQL_USER/g" $file
+        sed -i "s/ss/$MYSQL_PASS/g" $file
+        sed -i "s/shadowsocks/$MYSQL_DB/g" $file
+        echo "write the config successfully!"
+    else
+        echo "Plz modify the file on your own! I don't want to help you anymore.:) "
+        exit 0
+    fi
+else
+    exit 0
+fi
