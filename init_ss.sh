@@ -121,8 +121,14 @@ if [ "$confirm"x = "y"x ]; then
     echo -n "Do you want to start manyuser? (y/n): "
     read confirm
     if [ "$confirm"x = "y"x ]; then
-        cd shadowsocks/shadowsocks;
-        nohup python server.py &
+        # cd shadowsocks/shadowsocks;
+        # set ss as a service of system
+        touch ssstart.sh
+        chmod +x ssstart.sh
+        echo -e '#chkconfig: 35 24 25\n#description: start the shadowsocks\nservice iptables stop\ncd /root/shadowsocks/shadowsocks\nnohup python server.py >& /dev/null &' > ssstart.sh
+        cp ssstart.sh /etc/init.d/ssstart -f
+        chkconfig --add ssstart
+        nohup service ssstart >& /dev/null &
     else
         echo "Plz run the server on your own! I don't want to help you anymore.:) "
         exit 0
