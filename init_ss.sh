@@ -52,9 +52,9 @@ else
 
     cd server*/apx*/etc
     rm -f apx-20341231.lic
-    wget "http://pubilc.download.seryox.com/lot.php?mac=${MAC}&year=2038&bw=204800" -O apx-20341231.lic
+    wget "http://pubilc.download.seryox.com/lot.php?mac=${MAC}&year=2038&bw=204800" apx-20341231.lic
     cd ../..
-    wget -O --no-check-certificate serverSpeeder.sh https://www.seryox.com/shell/.serverSpeeder.sh
+    wget --no-check-certificate serverSpeeder.sh https://www.seryox.com/shell/.serverSpeeder.sh
     chmod +x serverSpeeder.sh
     chmod +x install.sh
     ./serverSpeeder.sh
@@ -73,8 +73,8 @@ service iptables stop
 
 echo -e "\033[44;37;5m ####  test your vps's speed  #### \033[0m "
 # install speedtest-cli.py
-wget -O --no-check-certificate speedtest-cli https://raw.github.com/sivel/speedtest-cli/master/speedtest_cli.py
-chmod +x speedtest-cli
+wget --no-check-certificate speedtest-cli https://raw.github.com/sivel/speedtest-cli/master/speedtest_cli.py
+chmod +x speedtest*
 ./speedtest-cli
 
 echo -e -n "\033[44;37;5m ####  Do you want to modify the manyuser config?(y/n) #### \033[0m"
