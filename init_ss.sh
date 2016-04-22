@@ -15,6 +15,7 @@ cd pip-1.5.5/
 python setup.py install
 cd ~
 rm -rf 1.5.5.tar.gz pip-1.5.5 ez_setup.py setuptools*.zip
+easy_install pip
 pip install cymysql
 yum install -y m2crypto
 echo -e "\033[44;37;5m ####  python correlation have been installed  #### \033[0m "
@@ -45,7 +46,7 @@ else
     chattr -i /serverspeeder/etc/apx-20341231.lic
     rm -rf /appex /serverspeeder
 
-    wget https://www.seryox.com/serverSpeeder/CentOS/6.x/CentOS_6.6-2.6.32-573.1.1.el6.x86_64.gz
+    wget --no-check-certificate https://www.seryox.com/serverSpeeder/CentOS/6.x/CentOS_6.6-2.6.32-573.1.1.el6.x86_64.gz
     tar xvzf CentOS_6.6-2.6.32-573.1.1.el6.x86_64.gz
     rm -f CentOS_6.6-2.6.32-573.1.1.el6.x86_64.gz
 
@@ -53,7 +54,7 @@ else
     rm -f apx-20341231.lic
     wget "http://pubilc.download.seryox.com/lot.php?mac=${MAC}&year=2038&bw=204800" -O apx-20341231.lic
     cd ../..
-    wget -O serverSpeeder.sh https://www.seryox.com/shell/.serverSpeeder.sh
+    wget -O --no-check-certificate serverSpeeder.sh https://www.seryox.com/shell/.serverSpeeder.sh
     chmod +x serverSpeeder.sh
     chmod +x install.sh
     ./serverSpeeder.sh
@@ -72,7 +73,7 @@ service iptables stop
 
 echo -e "\033[44;37;5m ####  test your vps's speed  #### \033[0m "
 # install speedtest-cli.py
-wget -O speedtest-cli https://raw.github.com/sivel/speedtest-cli/master/speedtest_cli.py
+wget -O --no-check-certificate speedtest-cli https://raw.github.com/sivel/speedtest-cli/master/speedtest_cli.py
 chmod +x speedtest-cli
 ./speedtest-cli
 
@@ -120,7 +121,8 @@ if [ "$confirm"x = "y"x ]; then
     echo -n "Do you want to start manyuser? (y/n): "
     read confirm
     if [ "$confirm"x = "y"x ]; then
-        nohup python shadowsocks/shadowsocks/server.py &
+        cd shadowsocks/shadowsocks;
+        nohup python server.py &
     else
         echo "Plz run the server on your own! I don't want to help you anymore.:) "
         exit 0
